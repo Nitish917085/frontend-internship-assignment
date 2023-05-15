@@ -1,31 +1,149 @@
 .header {
-  @apply
-  tw-flex
-  tw-flex-row
-  tw-justify-between
-  tw-items-center
-  tw-rounded-4-px
-  tw-p-12-px
-  tw-m-24-px;
-  background: linear-gradient(146deg, #e1eeff 19.67%, #ffe4fb 127.56%);
+  width: 200px;  height: 2px; background-color: #b87fb0;
 }
 
-.search-button {
-  @apply
-  tw-border 
-  tw-border-solid 
-  tw-border-dark-border
-  tw-rounded-4-px
-  tw-flex
-  tw-justify-center
-  tw-h-60-px
-  tw-w-200-px
+.container{
+   width: 100vw;    
+   display: flex;
+   height: 100vh;
+   flex-wrap: wrap;   
 }
 
-.trending-subjects {
-  @apply
-  tw-bg-table-header-bg
-  tw-p-12-px
-  tw-rounded-4-px
-  tw-shadow-lg
+.left-col {
+ padding: 10px 10px 10px 10px;
+ width: 200px;
+ background: linear-gradient(146deg, #430ae1 19.67%, #430ae1 19.67%, #b87fb0 127.56%);
 }
+
+.right-col {
+ width: 85% ;
+ background-color: white;
+ display: flex;
+ flex-direction: column;
+}
+
+
+.nav{
+ width: 100%;
+ height: 50px;
+ display: flex;
+ align-items: center;
+ box-shadow: 5px 3px 5px 3px lightgrey;
+}
+
+.home-nav{
+ width: 5%;
+ padding-left: 5px;
+ 
+}
+.home{
+ height: 40px;
+ border: 0px solid white;
+ border-radius: 5px;
+ background-color: #b87fb0;
+ display: flex;
+ justify-items: center;
+ align-items: center;
+ width: 100%;
+ display: flex;
+}
+
+.home:hover{
+ background-color: #c218ec;
+}
+.home-text{
+ padding-left: 10px;
+ display: flex;
+ 
+}
+
+.search-bar{
+ width: 95%;
+ display: flex;
+ justify-content: center;
+}
+
+.icon{
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ height: 1.8rem;
+ color:gray;
+ font-size: 1rem;
+ border-radius: 20px 0px 0px 20px;
+ border: 1px;
+ background-color : rgb(244, 244, 244);
+
+}
+.search-input{
+ outline: none;
+ height: 1.8rem;
+ border: 1px;
+ background-color : rgb(244, 244, 244);
+
+}
+
+.search-icon{
+ border-radius: 20px 0px 0px 20px;
+
+}
+
+.close-icon{
+ width: 20px;
+ border-radius: 0px 0px 0px 0px;
+}
+
+.search-button{
+  color:rgb(20, 18, 18);
+  width: 40px;
+  border-radius: 0px 20px 20px 0px;
+  border: 1px solid rgb(225, 220, 220);
+
+}
+
+.search-button:hover{
+  background-color: #eae7e9;
+}
+.trending{
+ color: white;
+
+}
+
+.trending:hover{
+ color: white;
+ border-radius: 5px;
+ background-color: #b87fb0;
+}
+
+.subject-api{
+ height: 100%;
+}
+
+.top-bar{
+ height: 40px;
+ display: flex;
+ align-items: center;
+ width: 100%;
+ background-color: #6233e2;
+ font-size: 20px;
+}
+.title{
+ 
+ margin-left: auto;
+ margin-right: auto;
+
+}
+.toggle-button{
+ justify-self: flex-start;
+}
+
+@media screen and (max-width: 800px) {
+ body {
+   background-color: lightgreen;
+ }
+ .right-col{
+   width: 100%;
+ }
+}
+
+

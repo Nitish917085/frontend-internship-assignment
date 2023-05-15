@@ -1,23 +1,46 @@
-<div class="header">
-  <div class="tw-text-24-px tw-font-600">Open Books Library</div>
-  <div class="search-button">
-    <mat-icon class="tw-mt-16-px" aria-label="Search Icon">search</mat-icon>
-    <input
-      [formControl]="bookSearch"
-      name="searchKey"
-      type="text"
-      placeholder="Search Books"
-      class="tw-border-0 tw-bg-inherit"
-    >
+
+<mat-toolbar class="top-bar">
+  <button class="toggle-button" mat-icon-button *ngIf="sidenav && sidenav.mode === 'over'" (click)="sidenav.toggle()">
+    <mat-icon *ngIf="!sidenav.opened"> menu </mat-icon>
+    <mat-icon *ngIf="sidenav.opened"> close </mat-icon>
+  </button>
+  <div class="title">
+    Open book Library
   </div>
-</div>
-<div class="tw-flex tw-flex-row tw-m-24-px">
-  <section class="trending-subjects">
-    <div class="tw-font-600 tw-text-24-px">Trending Subjects</div>
-    <ul class="tw-list-none tw-pl-0">
-      <li class="tw-text-16-px tw-cursor-pointer tw-p-12-px" *ngFor="let subject of trendingSubjects" routerLink="/trending-subject/{{ subject.name }}">
-        {{ subject.name }}
-      </li>
-    </ul>
-  </section>
-</div>
+    
+</mat-toolbar>
+<mat-sidenav-container class="container">
+ 
+  <!-- ---------------------------------------- -->
+  <mat-sidenav class="left-col">
+    <button class="home">
+      <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="home"></mat-icon>
+      <div class="home-text"> Home </div>
+    </button>
+
+    <section class="trending-subjects">
+      <ul class="tw-list-none tw-pl-0 lists">
+        <li class="tw-text-16-px tw-cursor-pointer tw-p-12-px trending" *ngFor="let subject of trendingSubjects"
+          routerLink="/trending-subject/{{ subject.name }}">
+          {{ subject.name }}
+        </li>
+      </ul>
+    </section>
+  </mat-sidenav>
+  
+  <mat-sidenav-content class="right-col">
+    <div class="nav">
+      <div class="home-nav">Home</div>
+      <div class="search-bar">
+        <mat-icon class="icon search-icon">search</mat-icon>
+        <input class="search-input" [formControl]="bookSearch" value="khk" name="searchKeySidebar" #boxSidebar
+          type="text" placeholder="Search..." (keyup)="getValue(boxSidebar.value)" (keyup.enter)="getBooks()">
+        <div class="icon close-icon">
+          <mat-icon *ngIf="isCloseDisplay" class="icon close-icon" (click)="clearInputText()">close</mat-icon>
+        </div>
+          <button class="icon search-button" (click)="getBooks()"><mat-icon class="">search</mat-icon></button>
+      </div>
+    </div>
+
+  </mat-sidenav-content>
+</mat-sidenav-container>
