@@ -52,3 +52,16 @@ export interface BookResponse {
   work_count: number;
   works: Book[];
 }
+
+export interface BookResponseByTitle {  
+  numFound: number;
+  start: number;
+  numFoundExact: number;
+  docs: Books[];
+}
+export interface Books {
+  key:string;
+  title: string;
+  first_publish_year: number;
+  author_name: string[];
+}

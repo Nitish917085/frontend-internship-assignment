@@ -11,13 +11,31 @@ import { ReactiveFormsModule } from '@angular/forms';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LayoutModule } from '@angular/cdk/layout';
+import { SubjectsComponent } from './components/subjects/subjects.component';
 
 
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {
+  NgxUiLoaderModule,
+  NgxUiLoaderConfig,
+  SPINNER,
+  POSITION,
+  PB_DIRECTION,
+} from "ngx-ui-loader";
+
+const ngxUiLoaderConfig: NgxUiLoaderConfig = {
+  bgsColor: "blue",
+  bgsPosition: POSITION.centerCenter,
+  bgsSize: 100,
+  bgsType: SPINNER.circle, // background spinner type
+  pbDirection: PB_DIRECTION.leftToRight, // progress bar direction
+  pbThickness: 20, // progress bar thickness
+};
 
 
 
 @NgModule({
-  declarations: [AppComponent, TrendingSubjectsComponent, HomeComponent],
+  declarations: [AppComponent, TrendingSubjectsComponent, HomeComponent,SubjectsComponent],
   imports: [
     BrowserModule,
     RouterModule,
@@ -27,7 +45,8 @@ import { LayoutModule } from '@angular/cdk/layout';
     ReactiveFormsModule,
     MatSidenavModule,
     BrowserAnimationsModule,
-    LayoutModule
+    LayoutModule,
+    NgxUiLoaderModule.forRoot(ngxUiLoaderConfig),
   ],
   providers: [],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA,NO_ERRORS_SCHEMA],

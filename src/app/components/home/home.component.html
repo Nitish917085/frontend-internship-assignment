@@ -1,4 +1,3 @@
-
 <mat-toolbar class="top-bar">
   <button class="toggle-button" mat-icon-button *ngIf="sidenav && sidenav.mode === 'over'" (click)="sidenav.toggle()">
     <mat-icon *ngIf="!sidenav.opened"> menu </mat-icon>
@@ -41,6 +40,8 @@
           <button class="icon search-button" (click)="getBooks()"><mat-icon class="">search</mat-icon></button>
       </div>
     </div>
+    <front-end-internship-assignment-subjects class="subject-api" [title]="titleAuthorName">
+    </front-end-internship-assignment-subjects>
 
   </mat-sidenav-content>
 </mat-sidenav-container>
