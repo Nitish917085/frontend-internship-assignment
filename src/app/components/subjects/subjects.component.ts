@@ -14,7 +14,9 @@ export class SubjectsComponent implements OnChanges {
 
   titleAuthorName: string = '';
   allBooksbytitle: Books[] = [];
-  loaderId:string="loader"
+  loaderId:string="loader";
+  isTrending: boolean = false;
+  isTitle: boolean = true;
   total_books:number=0;
   
   isLoader=true;
@@ -48,6 +50,8 @@ export class SubjectsComponent implements OnChanges {
   getAllBooksByNameAuthor() {
     this.isLoader=true;
     this.ngxService.startBackgroundLoader(this.loaderId)
+    this.isTrending = false;
+    this.isTitle = true;  
 
     //calling api service and updating variables
     this.subjectsService.getAllBooksByNameAuthor(this.titleAuthorName,this.offset,this.limit).subscribe((data) => {      

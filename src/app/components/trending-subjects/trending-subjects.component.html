@@ -1,6 +1,22 @@
-<div *ngIf="allBooks.length > 0">
-  <front-end-internship-assignment-table-view
-  [booksList]="allBooks"
-  [subjectName]="subjectName"
-  ></front-end-internship-assignment-table-view>
+<button class="backbutton" routerLink="/"><div>
+  <mat-icon>arrow_circle_left</mat-icon>
 </div>
+<div class="home">
+  Home Page
+</div>
+</button>
+<div class="popup" *ngIf="isLoader; else elseBlock">     
+  <ngx-ui-loader class="loader" [loaderId]="loaderId"></ngx-ui-loader>
+</div>
+
+<ng-template #elseBlock>
+  <div *ngIf="allBooks.length > 0">
+    <front-end-internship-assignment-table-view
+      [booksList]="allBooks"
+      [subjectName]="subjectName"
+      [isTrending]="isTrending"
+      [isTitle]="isTitle"
+      [total_books]="total_books"
+    ></front-end-internship-assignment-table-view>
+  </div>
+</ng-template>

@@ -1,7 +1,21 @@
-<div>
-  <div class="popup" *ngIf="isLoader">
-    <div>
-      <ngx-ui-loader class="loader" [loaderId]="loaderId"></ngx-ui-loader>
+  <div>
+    <div class="popup" *ngIf="isLoader; else elseBlock">     
+        <ngx-ui-loader class="loader" [loaderId]="loaderId"></ngx-ui-loader>
     </div>
+  
+    <ng-template #elseBlock>
+      <div *ngIf="allBooksbytitle.length > 0; else elseBlock2">
+        <front-end-internship-assignment-table-view
+          [booksListbyTitle]="allBooksbytitle"
+          [subjectName]="titleAuthorName"
+          [isTrending]="isTrending"
+          [isTitle]="isTitle"
+          [total_books]="total_books"
+        ></front-end-internship-assignment-table-view>
+      </div>
+      <ng-template #elseBlock2>
+        <div class="popup">No result found..</div>
+      </ng-template>
+    </ng-template>
   </div>
-</div>
+
