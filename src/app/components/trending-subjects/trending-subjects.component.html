@@ -1,22 +1,20 @@
-<button class="backbutton" routerLink="/"><div>
-  <mat-icon>arrow_circle_left</mat-icon>
-</div>
-<div class="home">
-  Home Page
-</div>
+<button class="backbutton" routerLink="/">
+  <div class="home-img">
+    <mat-icon>arrow_left</mat-icon>
+  </div>
+  <div class="home">
+    Home
+  </div>
 </button>
-<div class="popup" *ngIf="isLoader; else elseBlock">     
+<div class="popup" *ngIf="isLoader; else elseBlock">
   <ngx-ui-loader class="loader" [loaderId]="loaderId"></ngx-ui-loader>
 </div>
 
 <ng-template #elseBlock>
   <div *ngIf="allBooks.length > 0">
-    <front-end-internship-assignment-table-view
-      [booksList]="allBooks"
-      [subjectName]="subjectName"
-      [isTrending]="isTrending"
-      [isTitle]="isTitle"
-      [total_books]="total_books"
-    ></front-end-internship-assignment-table-view>
+    <front-end-internship-assignment-table-view [booksList]="allBooks" [subjectName]="subjectName"
+      [isTrending]="isTrending" [isTitle]="isTitle" [offset]="offset" [limit]="limit" [total_books]="total_books"
+      (pageUpdate)="pageUpdate($event)"
+      (limitUpdate)="limitUpdate($event)"></front-end-internship-assignment-table-view>
   </div>
 </ng-template>

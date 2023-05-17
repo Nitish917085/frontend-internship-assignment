@@ -1,8 +1,15 @@
-.popup {
-     margin: 100px 100px 100px 100px;
-     
-     font-size: 30px;
-  }
-  .loader{
+.container-subject{
+   height: 100%;
+}
+.popup{
+   height: calc(100vh - 120px);
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   font-size: xx-large;
+   color: rgb(222, 13, 13);
+ }
+
+ .loader{
    
   }

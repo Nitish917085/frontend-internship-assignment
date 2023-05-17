@@ -1,11 +1,11 @@
-<div class="tw-m-16-px">
+<div class="tw-m-16-px table-container">
   <ng-container>
-    <div *ngIf="isTrending">
-      <div class="tw-text-16-px my-2"> Top book on {{ subjectName }}</div>
+    <div *ngIf="isTrending" class="trending">
+      <div class="headline"> Top book on {{ subjectName }}</div>
 
       <table class="table-view">
         <thead>
-          <tr class="table-row">
+          <tr class="table-row heading">
             <th class="header">Title and Sub Title</th>
             <th class="header">Author</th>
             <th class="header">First Publish Year</th>
@@ -18,9 +18,9 @@
                 }}</a>
             </td>
             <td>
-              {{ book.authors.length > 0 ? book.authors[0].name : "Unknown" }}
+              {{ book.authors.length ? book.authors[0].name : "Unknown" }}
             </td>
-            <td>{{ book.first_publish_year }}</td>
+            <td>{{ book.first_publish_year ?book.first_publish_year:"Unknown"}}</td>
           </tr>
         </tbody>
       </table>
@@ -29,7 +29,7 @@
     <div *ngIf="isTitle">
       <table class="table-view">
         <thead>
-          <tr class="table-row">
+          <tr class="table-row heading">
             <th class="header">Titles and Sub Title</th>
             <th class="header">Author</th>
             <th class="header">First Publish Year</th>
@@ -42,7 +42,7 @@
                 }}</a>
             </td>
             <td>
-              {{ book.author_name[0]? book.author_name[0] : "Unknown" }}
+              {{ book.author_name ? book.author_name[0] : "Unknown" }}
             </td>
             <td>{{ book.first_publish_year }}</td>
           </tr>
@@ -50,7 +50,43 @@
       </table>
     </div>
   </ng-container>
-  <hr />
+
+  <div class="footer">
+    <div class="footer-left">
+      <div>
+        <div>Showing {{offset}} to {{limit+offset}} from {{total_books}}</div>
+      </div>
+      <div class="limit">
+        <label>Display :</label>
+        <select name="limit" (change)="onlimitselect($event)">
+          <option [label]="limit"></option>
+          <option [value]=5>5</option>
+          <option [value]=10>10</option>
+          <option [value]=15>15</option>
+          <option [value]=20>20</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="footer-right">
+      <button class="button-list" (click)="handlePageChange(-1)" [disabled]=isPreButton>&laquo;</button>
+      <button class="button-list" (click)="handlePageChange(-2)" [disabled]=isPreButton>&lsaquo;</button>
+      <div *ngFor="let range of paginationRanges">
+          <button *ngIf="(page===range); else elseButton" 
+                  class="button-list selected" 
+                  (click)="handlePageChange(range)">
+
+            {{range}}
+          </button>
+          <ng-template #elseButton>
+            <button class="button-list" (click)="handlePageChange(range)">
+              {{range}}
+            </button>
+          </ng-template>
+      </div>
+
+      <button class="button-list" (click)="handlePageChange(-3)" [disabled]="isNextButton">&rsaquo;</button>
+      <button class="button-list" (click)="handlePageChange(-4)" [disabled]="isNextButton">&raquo;</button>
+    </div>
+  </div>
 </div>
-<br/>
-<br/>

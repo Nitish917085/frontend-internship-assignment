@@ -12,7 +12,7 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LayoutModule } from '@angular/cdk/layout';
 import { SubjectsComponent } from './components/subjects/subjects.component';
-
+import {NgxPaginationModule} from 'ngx-pagination';
 
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {
@@ -45,6 +45,7 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     ReactiveFormsModule,
     MatSidenavModule,
     BrowserAnimationsModule,
+    NgxPaginationModule,
     LayoutModule,
     NgxUiLoaderModule.forRoot(ngxUiLoaderConfig),
   ],

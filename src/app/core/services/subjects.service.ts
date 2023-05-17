@@ -10,13 +10,11 @@ export class SubjectsService {
 
   constructor(private apiService: ApiService) {}
 
-  getAllBooks(subjectName: string): Observable<BookResponse> {
-    const limit = 10;
-    return this.apiService.get(`/subjects/${subjectName.toLowerCase().split(' ').join('_')}.json?limit=${limit}`);
+  getAllBooks(subjectName: string, offset: number, limit: number): Observable<BookResponse> {
+    return this.apiService.get(`/subjects/${subjectName.toLowerCase().split(' ').join('_')}.json?limit=${limit}&offset=${offset}`);
   }
 
   getAllBooksByNameAuthor(titleAuthorName: string, offset: number, limit: number): Observable<BookResponseByTitle> {
-    console.log("fetching")
     return this.apiService.get(`/search.json?q=${titleAuthorName}&limit=${limit}&offset=${offset}`);
   }
 }

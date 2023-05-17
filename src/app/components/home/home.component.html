@@ -1,3 +1,4 @@
+<!-- top bar he -->
 <mat-toolbar class="top-bar">
   <button class="toggle-button" mat-icon-button *ngIf="sidenav && sidenav.mode === 'over'" (click)="sidenav.toggle()">
     <mat-icon *ngIf="!sidenav.opened"> menu </mat-icon>
@@ -10,9 +11,9 @@
 </mat-toolbar>
 <mat-sidenav-container class="container">
  
-  <!-- ---------------------------------------- -->
+  <!-- -----------------left sidebar ----------------------- -->
   <mat-sidenav class="left-col">
-    <button class="home">
+    <button class="home" (click)="homePage()">
       <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="home"></mat-icon>
       <div class="home-text"> Home </div>
     </button>
@@ -26,10 +27,9 @@
       </ul>
     </section>
   </mat-sidenav>
-  
+  <!-- left column with search bar, table view -->
   <mat-sidenav-content class="right-col">
     <div class="nav">
-      <div class="home-nav">Home</div>
       <div class="search-bar">
         <mat-icon class="icon search-icon">search</mat-icon>
         <input class="search-input" [formControl]="bookSearch" value="khk" name="searchKeySidebar" #boxSidebar
@@ -40,8 +40,13 @@
           <button class="icon search-button" (click)="getBooks()"><mat-icon class="">search</mat-icon></button>
       </div>
     </div>
-    <front-end-internship-assignment-subjects class="subject-api" [title]="titleAuthorName">
-    </front-end-internship-assignment-subjects>
-
+    <div *ngIf="initilize; else elseBlocks" class="welcome">      
+      Welcome to Open Library
+    </div>
+    <ng-template #elseBlocks>
+      <front-end-internship-assignment-subjects class="subject-api" [title]="titleAuthorName">
+      </front-end-internship-assignment-subjects>
+    </ng-template>
+    
   </mat-sidenav-content>
 </mat-sidenav-container>

@@ -1,0 +1,21 @@
+.backbutton{
+    color: white;
+    width: 100px;
+    margin-left: 18px;
+    margin-top: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    border-radius: 10px;
+    background-color: rgb(15, 9, 175);
+}
+.backbutton:hover{    
+    cursor: pointer;
+    background-color: rgb(216, 17, 17);
+
+}
+
+.home-img{
+    padding-top: 3px;
+}

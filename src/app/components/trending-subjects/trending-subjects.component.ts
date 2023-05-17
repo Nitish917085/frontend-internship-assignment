@@ -11,13 +11,15 @@ import { NgxUiLoaderService } from "ngx-ui-loader";
 })
 export class TrendingSubjectsComponent implements OnInit {
 
-  isLoader=true;
+  isLoader: boolean = true;
   subjectName: string = '';
   allBooks: Book[] = [];
   isTrending: boolean = false;
   isTitle: boolean = true;
-  loaderId:string="loader";
   total_books:number=0;
+  offset: number = 10;
+  limit: number = 10;
+  loaderId:string="loader"
 
 
   constructor(private ngxService: NgxUiLoaderService,
@@ -25,14 +27,14 @@ export class TrendingSubjectsComponent implements OnInit {
     private subjectsService: SubjectsService
   ) {}
 
-
+  
   getAllBooks() {
     this.isLoader=true;
     this.isTrending = true;
     this.ngxService.start();
     this.ngxService.startBackgroundLoader(this.loaderId)
     this.isTitle = false;
-    this.subjectsService.getAllBooks(this.subjectName).subscribe((data) => {
+    this.subjectsService.getAllBooks(this.subjectName, this.offset, this.limit).subscribe((data) => {
         this.allBooks = data?.works;
         this.total_books=data?.work_count;  
         this.ngxService.stopBackgroundLoader(this.loaderId);  
@@ -40,9 +42,22 @@ export class TrendingSubjectsComponent implements OnInit {
       });
   }
 
+  public pageUpdate($event: any): void {
+    this.offset = $event;
+    this.getAllBooks();
+  }
+
+  public limitUpdate($event:number):void {
+    this.limit=$event;
+    this.getAllBooks();
+  }
+
   ngOnInit(): void {
     this.route.paramMap.subscribe((params: ParamMap) => {
       this.subjectName = params.get('name') || '';
+      this.limit = 10;
+      this.offset = 0;
+      this.isLoader = true;
       this.getAllBooks();
     });
   }

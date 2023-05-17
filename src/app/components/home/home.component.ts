@@ -20,6 +20,7 @@ export class HomeComponent implements OnInit,OnChanges {
   titleAuthorName: string = '';
   isTitleDisplay: boolean = false;
   isCloseDisplay:boolean=false;
+  initilize:boolean=true;
 
   constructor(private route: Router,
     public observer : BreakpointObserver) {
@@ -27,6 +28,7 @@ export class HomeComponent implements OnInit,OnChanges {
 
   }
 
+  // to show sidebar according to diffrent screen size
   ngAfterViewInit() {
     this.observer.observe(["(max-width: 800px)"]).subscribe((res) => {
       if (res.matches) {
@@ -39,6 +41,8 @@ export class HomeComponent implements OnInit,OnChanges {
     });
   }
 
+   
+  //update every then when field value is changed
   getValue(val: string) {
     this.isTitleDisplay = false;    
    if (val.length>0)
@@ -49,11 +53,20 @@ export class HomeComponent implements OnInit,OnChanges {
     this.title = val;
   }
 
+  //call when hit enter or search btoon clicked
   getBooks() {
+    this.initilize=false
     this.isTitleDisplay = true;
     this.titleAuthorName = this.title;
   }
   
+  // function call when home button clicked on sidebar
+  homePage(){
+    this.initilize=true
+    this.titleAuthorName=""
+  }
+
+  //clear input Field when close button clicked in search bar
   clearInputText(){
     this.bookSearch?.reset();
     this.isCloseDisplay=false;
@@ -72,6 +85,7 @@ export class HomeComponent implements OnInit,OnChanges {
   }
 
   ngOnInit(): void {
+    this.initilize=true;    
     this.bookSearch.valueChanges
       .pipe(debounceTime(300))
       .subscribe((value: string) => {});

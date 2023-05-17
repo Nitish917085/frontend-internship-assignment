@@ -62,6 +62,6 @@ export interface BookResponseByTitle {
 export interface Books {
   key:string;
   title: string;
-  first_publish_year: number;
-  author_name: string[];
+  first_publish_year: number|"";
+  author_name: string[]|"";
 }

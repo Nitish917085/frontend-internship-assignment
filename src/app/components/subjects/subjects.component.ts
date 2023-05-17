@@ -11,14 +11,13 @@ import { NgxUiLoaderService } from "ngx-ui-loader";
 })
 export class SubjectsComponent implements OnChanges {
   @Input() title:string ="";
-
+  allBooksbytitle: Books[] = [];  
+  isLoading: boolean = true;
   titleAuthorName: string = '';
-  allBooksbytitle: Books[] = [];
-  loaderId:string="loader";
   isTrending: boolean = false;
   isTitle: boolean = true;
+  loaderId:string="loader"
   total_books:number=0;
-  
   isLoader=true;
   offset:number=0;
   limit:number=10;
@@ -55,7 +54,6 @@ export class SubjectsComponent implements OnChanges {
 
     //calling api service and updating variables
     this.subjectsService.getAllBooksByNameAuthor(this.titleAuthorName,this.offset,this.limit).subscribe((data) => {      
-            console.log(data)
             this.allBooksbytitle = data?.docs;
             this.total_books=data?.numFound;
             this.lengths=this.allBooksbytitle.length;            
@@ -63,6 +61,18 @@ export class SubjectsComponent implements OnChanges {
             this.ngxService.stopBackgroundLoader(this.loaderId);            
     });     
   }
+
+  //when page change take place in table view
+  public pageUpdate($event:any):void {    
+    this.offset=$event;
+    this.getAllBooksByNameAuthor();
+  }
+  //calls when limit is upadated by 
+  public limitUpdate($event:number):void {
+    this.limit=$event;
+    this.getAllBooksByNameAuthor();
+  }
+
 
   //any parameter changes reload the page
 
