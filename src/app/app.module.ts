@@ -13,6 +13,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LayoutModule } from '@angular/cdk/layout';
 import { SubjectsComponent } from './components/subjects/subjects.component';
 import {NgxPaginationModule} from 'ngx-pagination';
+import { CacheInterceptor } from './core/services/api-interceptor.service';
+import {HTTP_INTERCEPTORS} from '@angular/common/http';
 
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {
@@ -49,7 +51,7 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     LayoutModule,
     NgxUiLoaderModule.forRoot(ngxUiLoaderConfig),
   ],
-  providers: [],
+  providers: [{provide:HTTP_INTERCEPTORS,useClass:CacheInterceptor,multi:true}],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA,NO_ERRORS_SCHEMA],
   bootstrap: [AppComponent],
 })

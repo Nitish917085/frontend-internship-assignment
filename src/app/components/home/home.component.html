@@ -30,16 +30,20 @@
   <!-- left column with search bar, table view -->
   <mat-sidenav-content class="right-col">
     <div class="nav">
+      <!-- serach bar -->
       <div class="search-bar">
         <mat-icon class="icon search-icon">search</mat-icon>
-        <input class="search-input" [formControl]="bookSearch" value="khk" name="searchKeySidebar" #boxSidebar
+
+        <input class="search-input" [formControl]="bookSearch" value="" name="searchKeySidebar" #boxSidebar
           type="text" placeholder="Search..." (keyup)="getValue(boxSidebar.value)" (keyup.enter)="getBooks()">
-        <div class="icon close-icon">
-          <mat-icon *ngIf="isCloseDisplay" class="icon close-icon" (click)="clearInputText()">close</mat-icon>
-        </div>
-          <button class="icon search-button" (click)="getBooks()"><mat-icon class="">search</mat-icon></button>
+        
+        <mat-icon *ngIf="isCloseDisplay" class="icon close-icon" (click)="clearInputText()">close</mat-icon>
+
+        <mat-icon class="icon search-button" (click)="getBooks()">search</mat-icon>
       </div>
+       <!-- --------------------------------- -->
     </div>
+   
     <div *ngIf="initilize; else elseBlocks" class="welcome">      
       Welcome to Open Library
     </div>

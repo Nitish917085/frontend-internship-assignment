@@ -14,8 +14,8 @@
         <tbody class="table-body">
           <tr *ngFor="let book of booksList" class="row-data">
             <td>
-              <a class="tw-no-underline" href="https://openlibrary.org{{ book.key }}" target="_blank">{{ book.title
-                }}</a>
+              <a class="tw-no-underline" href="https://openlibrary.org{{ book.key }}" target="_blank">
+                {{ book.title}}</a>
             </td>
             <td>
               {{ book.authors.length ? book.authors[0].name : "Unknown" }}
